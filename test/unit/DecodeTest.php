@@ -45,6 +45,14 @@ class DecodeTest extends PHPUnit_Framework_TestCase
                     'logged_in' => 'yes',
                 ]
             ],
+            [
+                'login_ok|b:1;name|s:4:"sica";integer|i:34;',
+                [
+                    'login_ok' => true,
+                    'name'     => 'sica',
+                    'integer'  => 34,
+                ]
+            ],
         ];
     }
 }

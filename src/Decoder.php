@@ -34,6 +34,11 @@ final class Decoder implements DecoderInterface
                 $arr[$key] = (string) $rawValue;
                 continue;
             }
+
+            if ('b' === $type) {
+                $arr[$key] = (bool) $rawValue;
+                continue;
+            }
         }
 
         return $arr;
