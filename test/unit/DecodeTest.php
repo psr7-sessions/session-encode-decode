@@ -35,6 +35,10 @@ class DecodeTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
+                '',
+                []
+            ],
+            [
                 'counter|i:0;',
                 ['counter' => 0]
             ],
