@@ -16,6 +16,7 @@ final class Decoder
 
             // @todo refactor this conditional
             if (3 === count($explodedData)) {
+                // @todo throw exception in case of wrong length
                 [$type, $length, $rawValue] = [$explodedData[0], $explodedData[1], trim($explodedData[2], '"')];
             } else {
                 [$type, $rawValue] = [$explodedData[0], $explodedData[1]];
