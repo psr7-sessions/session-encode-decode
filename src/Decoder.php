@@ -11,49 +11,34 @@ final class Decoder implements DecoderInterface
      */
     public function __invoke(string $encodedSessionData): array
     {
-        if('' === $encodedSessionData) {
+        if ('' === $encodedSessionData) {
             return [];
         }
 
-        $arr = [];
-        foreach (explode(';', rtrim($encodedSessionData, ';')) as $data) {
-            [$key, $value] = explode('|', $data);
+        preg_match_all('/(^|;|\})(\w+)\|/i', $encodedSessionData, $matchesarray, PREG_OFFSET_CAPTURE);
 
-            $explodedData = explode(':', $value);
+        $decodedData = [];
 
-            // @todo refactor this conditional
-            if (3 === count($explodedData)) {
-                // @todo throw exception in case of wrong length
-                [$type, $length, $rawValue] = [$explodedData[0], $explodedData[1], trim($explodedData[2], '"')];
-            } else {
-                [$type, $rawValue] = [$explodedData[0], $explodedData[1]];
+        $lastOffset = null;
+        $currentKey = '';
+        foreach ($matchesarray[2] as $value) {
+            $offset = $value[1];
+            if (null !== $lastOffset) {
+                $valueText = substr($encodedSessionData, $lastOffset, $offset - $lastOffset);
+
+                /** @noinspection UnserializeExploitsInspection */
+                $decodedData[$currentKey] = unserialize($valueText);
             }
+            $currentKey = $value[0];
 
-            // integer
-            if ('i' === $type) {
-                $arr[$key] = (int) $rawValue;
-                continue;
-            }
-
-            // string
-            if ('s' === $type) {
-                $arr[$key] = (string) $rawValue;
-                continue;
-            }
-
-            // bool
-            if ('b' === $type) {
-                $arr[$key] = (bool) $rawValue;
-                continue;
-            }
-
-            // object
-            if ('O' === $type) {
-                $arr[$key] = (bool) $rawValue;
-                continue;
-            }
+            $lastOffset = $offset + strlen($currentKey) + 1;
         }
 
-        return $arr;
+        $valueText = substr($encodedSessionData, $lastOffset);
+
+        /** @noinspection UnserializeExploitsInspection */
+        $decodedData[$currentKey] = unserialize($valueText);
+
+        return $decodedData;
     }
 }
