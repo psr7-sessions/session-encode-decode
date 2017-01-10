@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace PSR7SessionEncodeDecode;
 
-final class Decoder
+final class Decoder implements DecoderInterface
 {
-    public function __invoke(string $encodedSessionData)
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(string $encodedSessionData): array
     {
         $arr = [];
         foreach (explode(';', rtrim($encodedSessionData, ';')) as $data) {
