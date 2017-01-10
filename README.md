@@ -1,6 +1,10 @@
 :lock_with_ink_pen: PSR7Session encoder/decoder
 ============================
 
+[![Build Status](https://travis-ci.org/psr7-sessions/session-encode-decode.svg?branch=master)](https://travis-ci.org/psr7-sessions/session-encode-decode)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/psr7-sessions/session-encode-decode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/psr7-sessions/session-encode-decode/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/psr7-sessions/session-encode-decode/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/psr7-sessions/session-encode-decode/?branch=master)
+
 This library provides a way to encode and decode default session data.
 
 ### Installation
