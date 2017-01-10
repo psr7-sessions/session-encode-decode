@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 7
+  - 7.1
+
+before_script:
+  - composer update --prefer-source --ignore-platform-reqs
+
+script:
+  - ./vendor/bin/phpunit --disallow-test-output --report-useless-tests --coverage-clover ./clover.xml
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover ./clover.xml
