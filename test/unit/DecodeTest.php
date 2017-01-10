@@ -28,7 +28,7 @@ class DecodeTest extends PHPUnit_Framework_TestCase
     {
         $actual = $this->decoder->__invoke($encodedString);
 
-        self::assertSame($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function provideEncodeAndExpectedDecodedData() : array
@@ -46,11 +46,14 @@ class DecodeTest extends PHPUnit_Framework_TestCase
                 ]
             ],
             [
-                'login_ok|b:1;name|s:4:"sica";integer|i:34;',
+                'login_ok|b:1;name|s:4:"sica";integer|i:34;obj|O:8:"stdClass":1:{s:4:"heya";i:123;}',
                 [
                     'login_ok' => true,
                     'name'     => 'sica',
                     'integer'  => 34,
+                    'obj'      => (object) [
+                        'heya' => 123,
+                    ],
                 ]
             ],
         ];
