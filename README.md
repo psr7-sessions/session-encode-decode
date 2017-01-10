@@ -17,9 +17,11 @@ PHP's native `session_encode()` and `session_decode()` functions has some limita
 
 - session_decode()
     - Can't be used if there's no session active
+    - Populates the super global `$_SESSION` variable automatically
 
 - session_encode()
-    - Access the global $_SESSION data in order to encode its content. So you can't use it to encode the content you want.
+    - Do not accept parameters, so you can't use it to encode the content you want.
+    - Depends on `$_SESSION` global state
 
 ### Encoding
 
