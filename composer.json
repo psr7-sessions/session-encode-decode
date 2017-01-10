@@ -1,5 +1,5 @@
 {
-    "name":        "psr7-sessions/encode-decoder",
+    "name":        "psr7-sessions/session-encode-decoder",
     "description": "Storageless PSR-7 Session support",
     "license":     "MIT",
     "authors": [
