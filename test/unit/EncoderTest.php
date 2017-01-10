@@ -7,6 +7,9 @@ namespace PSR7SessionEncodeDecodeTest;
 use PHPUnit_Framework_TestCase;
 use PSR7SessionEncodeDecode\Encoder;
 
+/**
+ * @covers \PSR7SessionEncodeDecode\Encoder
+ */
 class EncoderTest extends PHPUnit_Framework_TestCase
 {
     /**
