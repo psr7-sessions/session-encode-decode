@@ -11,6 +11,10 @@ final class Decoder implements DecoderInterface
      */
     public function __invoke(string $encodedSessionData): array
     {
+        if('' === $encodedSessionData) {
+            return [];
+        }
+
         $arr = [];
         foreach (explode(';', rtrim($encodedSessionData, ';')) as $data) {
             [$key, $value] = explode('|', $data);
@@ -25,17 +29,26 @@ final class Decoder implements DecoderInterface
                 [$type, $rawValue] = [$explodedData[0], $explodedData[1]];
             }
 
+            // integer
             if ('i' === $type) {
                 $arr[$key] = (int) $rawValue;
                 continue;
             }
 
+            // string
             if ('s' === $type) {
                 $arr[$key] = (string) $rawValue;
                 continue;
             }
 
+            // bool
             if ('b' === $type) {
+                $arr[$key] = (bool) $rawValue;
+                continue;
+            }
+
+            // object
+            if ('O' === $type) {
                 $arr[$key] = (bool) $rawValue;
                 continue;
             }
