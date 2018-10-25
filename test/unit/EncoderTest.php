@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace PSR7SessionEncodeDecodeTest;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PSR7SessionEncodeDecode\Encoder;
 
 /**
  * @covers \PSR7SessionEncodeDecode\Encoder
  */
-class EncoderTest extends PHPUnit_Framework_TestCase
+class EncoderTest extends TestCase
 {
     /**
      * @var Encoder
